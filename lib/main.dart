@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
 import 'dart:math' as math;
+import 'package:get/get.dart';
+import 'package:jojocart_mobile/controller/NavigationController.dart';
 
 import 'package:jojocart_mobile/theme/appTheme.dart';
+import 'package:jojocart_mobile/view/MyHomePage.dart';
+
+import 'controller/ProductController.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Show status bar, hide bottom navigation bar
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: [SystemUiOverlay.top],
+  );
+  Get.put(ProductController());
+  Get.put(NavigationController());
+
   runApp(const MyApp());
 }
 
@@ -13,12 +29,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'JojoCart',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system, // Or ThemeMode.light or ThemeMode.dark
+      themeMode: ThemeMode.system,
       home: const SplashScreen(),
     );
   }
@@ -419,165 +435,3 @@ class LoadingPainter extends CustomPainter {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // Example of using the theme and extensions
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('JojoCart', style: context.titleLarge),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications_none),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(AppTheme.spacingM),
-        children: [
-          // Example section header
-          Text(
-            'Welcome to JojoCart',
-            style: context.headingSmall,
-          ),
-          const SizedBox(height: AppTheme.spacingM),
-
-          // Example card
-          Card(
-            elevation: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(AppTheme.spacingM),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Today\'s Deals',
-                    style: context.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: AppTheme.spacingS),
-                  Text(
-                    'Check out our latest products and exclusive offers',
-                    style: context.bodyMedium,
-                  ),
-                  const SizedBox(height: AppTheme.spacingM),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Shop Now'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          const SizedBox(height: AppTheme.spacingL),
-
-          // Example form fields
-          Text(
-            'Contact Information',
-            style: context.titleMedium,
-          ),
-          const SizedBox(height: AppTheme.spacingM),
-          TextField(
-            decoration: const InputDecoration(
-              labelText: 'Full Name',
-              hintText: 'Enter your name',
-              prefixIcon: Icon(Icons.person_outline),
-            ),
-          ),
-          const SizedBox(height: AppTheme.spacingM),
-          TextField(
-            decoration: const InputDecoration(
-              labelText: 'Email Address',
-              hintText: 'Enter your email',
-              prefixIcon: Icon(Icons.email_outlined),
-            ),
-          ),
-
-          const SizedBox(height: AppTheme.spacingL),
-
-          // Example chips
-          Wrap(
-            spacing: AppTheme.spacingS,
-            runSpacing: AppTheme.spacingS,
-            children: [
-              Chip(label: const Text('Electronics')),
-              Chip(label: const Text('Fashion')),
-              Chip(label: const Text('Home')),
-              Chip(label: const Text('Beauty')),
-              Chip(label: const Text('Sports')),
-            ],
-          ),
-
-          const SizedBox(height: AppTheme.spacingL),
-
-          // Example buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              OutlinedButton(
-                onPressed: () {},
-                child: const Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Confirm'),
-              ),
-            ],
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            activeIcon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline),
-            activeIcon: Icon(Icons.favorite),
-            label: 'Wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add_shopping_cart),
-      ),
-    );
-  }
-}

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "235910802566",
+    "project_id": "jojocart-cd3fb",
+    "storage_bucket": "jojocart-cd3fb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235910802566:android:27b6e32507c77cae167507",
+        "android_client_info": {
+          "package_name": "com.example.jojocart_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235910802566-l7a9a97258o99bj73shcjo8emut8cjv4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jojocart_mobile",
+            "certificate_hash": "9bfb66db08a2fd4b6447b56db711385f01d36d54"
+          }
+        },
+        {
+          "client_id": "235910802566-ffq5rihskvefjm334q1om7bb21paeqdv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF4rNu1CiaLSQO9W4ND-uW898kCBxsrOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235910802566-ffq5rihskvefjm334q1om7bb21paeqdv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

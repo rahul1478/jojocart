@@ -99,7 +99,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                 children: [
                   _buildCategoryChip('Father\'s Day', 'assets/fathers_day.jpg', true),
                   _buildCategoryChip('Bestsellers', 'assets/bestsellers.jpg', false),
-                  _buildCategoryChip('FNP Luxe', 'assets/luxe.jpg', false),
+                  _buildCategoryChip('All Cakes', 'assets/luxe.jpg', false),
                   _buildCategoryChip('Same Day\nDelivery', 'assets/same_day.jpg', false),
                 ],
               ),

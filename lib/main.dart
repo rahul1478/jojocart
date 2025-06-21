@@ -4,13 +4,16 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:get/get.dart';
 import 'package:jojocart_mobile/controller/NavigationController.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase;
+import 'package:get_storage/get_storage.dart';
 
 import 'package:jojocart_mobile/theme/appTheme.dart';
 import 'package:jojocart_mobile/view/MyHomePage.dart';
 
+import 'controller/LocationController.dart';
 import 'controller/ProductController.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Show status bar, hide bottom navigation bar
@@ -18,8 +21,11 @@ void main() {
     SystemUiMode.manual,
     overlays: [SystemUiOverlay.top],
   );
+  await GetStorage.init();
+  Get.put(LocationController());
   Get.put(ProductController());
   Get.put(NavigationController());
+  await firebase.Firebase.initializeApp();
 
   runApp(const MyApp());
 }

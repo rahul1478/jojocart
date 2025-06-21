@@ -4,8 +4,12 @@ import 'package:jojocart_mobile/view/CategoriesScreen.dart';
 import 'package:jojocart_mobile/view/MouthWateringCakesPage.dart';
 import 'package:jojocart_mobile/view/OccasionsScreen.dart';
 import 'package:jojocart_mobile/view/SameDayPage.dart';
+import 'package:get/get.dart';
 
+import '../controller/LocationController.dart';
 import '../theme/appTheme.dart';
+import '../widget/LocationDisplayWidget.dart';
+import '../widget/LocationSelectionDialog.dart';
 import 'AccountPage.dart';
 import 'HomePage.dart';
 import 'LoginScreen.dart';
@@ -21,8 +25,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  String _location = "New York";
-  String _pincode = "10001";
+  String _location = "Select Delivery Location";
+  String _pincode = "Location Missing";
 
   // List of pages to be displayed
   final List<Widget> _pages = [
@@ -42,18 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<LocationController>();
+
+
+
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
+        titleSpacing: 0, // removes default spacing between leading and title
+        title: Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Icon(Icons.location_on_outlined),
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(_location, style: context.titleMedium),
-            Text(_pincode, style: context.bodySmall),
-          ],
+          child: const LocationDisplayWidget(),
         ),
         actions: [
           IconButton(
@@ -73,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+
       body: _pages[_selectedIndex], // Show the selected page
       bottomNavigationBar: SafeArea(
         child: CurvedNavigationBar(

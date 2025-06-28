@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:jojocart_mobile/theme/appTheme.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoadingIndicator extends StatelessWidget {
@@ -8,7 +9,8 @@ class LoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: LoadingAnimationWidget.dotsTriangle(
-        color: Color(0xFF199A8E),
+        color: AppTheme.primaryColor
+        ,
         size: 50.0,
       ),
     );

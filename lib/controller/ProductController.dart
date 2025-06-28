@@ -114,7 +114,6 @@ class ProductController extends GetxController {
         debugPrint('📦 Parsed ${newProducts.length} products');
         print("check the data: ${jsonEncode(newProducts)}");
 
-
         if (loadMore) {
           products.addAll(newProducts);
           currentPage.value++; // Increment page for next load
